@@ -23,10 +23,9 @@ os: linux
 #   "files" section altogether. A blank or incomplete "files" section
 #   may cause associated deployments to fail.
 files:
-  - source: 
-    destination:
-  - source:
-    destination:
+  - source: /
+    destination: /var/www/html
+    overwrite: true
 # For deployments to Amazon Linux, Ubuntu Server, or RHEL instances,
 #   you can specify a "permissions" 
 #   section here that describes special permissions to apply to the files 
@@ -38,20 +37,13 @@ files:
 #   "permissions" section altogether. A blank or incomplete "permissions"
 #   section may cause associated deployments to fail.
 permissions:
-  - object:
-    pattern:
-    except:
-    owner:
-    group:
-    mode: 
-    acls:
-      -
-    context:
-      user:
-      type:
-      range:
+  - object: /var/www/html/
+    pattern: "*.sh" 
+    owner: root
+    group: root
+    mode: 755
     type:
-      -
+      - file
 # If you are not running any commands on the Amazon EC2 instance, then remove 
 #   the "hooks" section altogether. A blank or incomplete "hooks" section
 #   may cause associated deployments to fail.
